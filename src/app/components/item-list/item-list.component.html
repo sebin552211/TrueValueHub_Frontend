@@ -1,0 +1,194 @@
+<div class="central-part-container">
+  <div class="header">
+    <h3 class="items" style="font-size:medium; margin-top: 8px;">Items</h3>
+    <div class="expand-collapse-buttons">
+      <button (click)="expandAll()">Expand All</button>
+      <button (click)="collapseAll()">Collapse All</button>
+    </div>
+  </div>
+
+  <div *ngFor="let item of items" class="accordion-item">
+    <div class="accordion-header" (click)="toggleItem(item)">
+      <div class="item-icon">
+        <i class="fa" [ngClass]="item.icon"></i>
+      </div>
+      <div class="item-info">
+        <span>{{ item.title }}</span>
+        <div class="item-progress">
+          <div class="progress-bar">
+            <div class="progress" [style.width]="item.progress + '%'"></div>
+          </div>
+          <span class="progress-text">{{ item.progress }}% Completed</span>
+        </div>
+      </div>
+      <div class="item-toggle">
+        <i [class]="item.isExpanded ? 'fa fa-minus' : 'fa fa-plus'"></i>
+      </div>
+    </div>
+
+    <div *ngIf="item.isExpanded" class="accordion-content">
+      <ng-container [ngSwitch]="item.content.type">
+        <ng-container *ngSwitchCase="'form'">
+          <ng-container *ngIf="isIterable(item.content?.data)">
+            <form>
+              <div class="form-row">
+                <div *ngFor="let field of item.content?.data; let i = index" class="form-group">
+
+                  <!-- Manufacturing Information Table (Only for 'Manufacturing Information') -->
+                  <ng-container *ngIf="item.title === 'Manufacturing Information'; else generalField">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Sl #</th>
+                          <th>Process Type</th>
+                          <th>Machine Details</th>
+                          <th>Machine Description</th>
+                          <th>Cost($)</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Loop through the manufacturing list and display in the table -->
+                        <tr *ngFor="let manufacturing of manufacturings; let i = index">
+                          <td>{{ i + 1 }}</td>
+                          <td>{{ manufacturing.processType }}</td>
+                          <td>{{ manufacturing.machineDetails }}</td>
+                          <td>{{ manufacturing.machineDescription }}</td>
+                          <td>{{ manufacturing.cost | number:'1.3-3' }}</td>
+                          <td class="action-icons">
+                            <!-- Edit and Delete buttons for each manufacturing -->
+                            <i class="bi bi-pencil-square edit-icon" (click)="editManufacturing(manufacturing)"></i>
+                            <i class="bi bi-trash delete-icon" (click)="deleteManufacturing(manufacturing.manufacturingId)"></i>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  
+                    <!-- Button to show the Add Manufacturing form -->
+                    <a href="javascript:void(0)" (click)="showAddProcessForm()" class="mb-2 text-primary" style="margin-left: 500px; font-size: smaller;">Add Process</a>
+
+                  
+                    <!-- New Form for Adding Manufacturing Entry -->
+                    <div *ngIf="isAddingNewManufacturing" class="manufacturing-add-form">
+                      <span style="font-weight: 500;">Add Manufacturing Details :</span>
+                      <form>
+                        <div class="first-manufacturing-row" style="margin-top: 10px;">
+                          <div class="form-group">
+                            <label for="addProcessType" style="font-size: smaller;">Process Type:</label>
+                            <input id="addProcessType" [(ngModel)]="newManufacturing.processType" name="addProcessType" class="form-control" placeholder="Process Type" required (input)="onManufacturingFieldChange()" style="width: 180px;"/>
+                          </div>
+                          <div class="form-group">
+                            <label for="addMachineDetails" style="font-size: smaller;">Machine Details:</label>
+                            <input id="addMachineDetails" [(ngModel)]="newManufacturing.machineDetails" name="addMachineDetails" class="form-control" placeholder="Machine Details" required (input)="onManufacturingFieldChange()" style="width: 180px;"/>
+                          </div>
+                        
+                          <div class="form-group">
+                            <label for="addMachineDescription" style="font-size: smaller;">Machine Description:</label>
+                            <input id="addMachineDescription" [(ngModel)]="newManufacturing.machineDescription" name="addMachineDescription" class="form-control" placeholder="Machine Description" required (input)="onManufacturingFieldChange()" style="width: 180px;"/>
+                          </div>
+                        </div>
+                        <div class="first-manufacturing-row">
+                          <div class="form-group">
+                            <label for="addCost" style="font-size: smaller;">Cost($):</label>
+                            <input id="addCost" type="number" [(ngModel)]="newManufacturing.cost" name="addCost" class="form-control" placeholder="Cost" required (change)="onManufacturingFieldChange()" style="width: 180px;"/>
+                          </div>
+                        </div>
+                        <a href="javascript:void(0)" (click)="hideAddProcessForm()" class="btn btn-link" style="margin-left: 482px; font-size: smaller;">Hide Process</a>
+                      </form>
+                    </div>
+                  
+                    <!-- Editable Form for Existing Manufacturing -->
+                    <div *ngIf="isEditing" class="manufacturing-edit-form">
+                      <span style="font-weight: 500;">Edit Manufacturing Details :</span>
+                      <form (ngSubmit)="false">
+                        <div class="first-manufacturing-row" style="margin-top: 10px;">
+                          <div class="form-group">
+                            <label for="processType" style="font-size: smaller;">Process Type:</label>
+                            <input id="processType" [(ngModel)]="processType" name="processType" class="form-control" placeholder="Process Type" required (input)="onManufacturingFieldChange()" style="width: 180px;"/>
+                          </div>
+                          <div class="form-group">
+                            <label for="machineDetails" style="font-size: smaller;">Machine Details:</label>
+                            <input id="machineDetails" [(ngModel)]="machineDetails" name="machineDetails" class="form-control" placeholder="Machine Details" required (input)="onManufacturingFieldChange()" style="width: 180px;"/>
+                          </div>
+                          <div class="form-group">
+                            <label for="machineDescription" style="font-size: smaller;">Machine Description:</label>
+                            <input id="machineDescription" [(ngModel)]="machineDescription" name="machineDescription" class="form-control" placeholder="Machine Description" required (input)="onManufacturingFieldChange()" style="width: 180px;"/>
+                          </div>
+                        </div>
+                        <div class="first-manufacturing-row">
+                          <div class="form-group">
+                            <label for="cost" style="font-size: smaller;">Cost($):</label>
+                            <input id="cost" type="number" [(ngModel)]="cost" name="cost" class="form-control" placeholder="Cost" required (change)="onManufacturingFieldChange()" style="width: 180px;"/>
+                          </div>
+                        </div>
+                        <a href="javascript:void(0)" (click)="hideDetails()" class="mt-2" style="margin-left: 500px; font-size: smaller;">Hide Details</a>
+
+                      </form>
+                    </div>
+                  </ng-container>
+                  
+
+
+                  <!-- General Field Template (For text fields and dropdowns) -->
+                  <ng-template #generalField>
+                    <ng-container *ngIf="field.label !== 'Part Complexity'; else partComplexityField">
+                      <label style="font-size: 0.61rem; font-weight: 400;">{{ field.label }}</label>
+                      <span class="info-icon" (click)="showInfo(field.infoMessage)">
+                        <i class="bi bi-info-circle"></i> :
+                      </span>
+
+                      <!-- If options exist, render a dropdown -->
+                      <ng-container *ngIf="field.options; else textField">
+                        <select class="form-control-dropdown" [(ngModel)]="field.value" (change)="onFieldChange()"
+                          name="field{{i}}">
+                          <option value="" disabled selected>{{ field.label }}</option>
+                          <option *ngFor="let option of field.options" [value]="option">{{ option }}</option>
+                        </select>
+                      </ng-container>
+
+                      <!-- Render text input if no options exist -->
+                      <ng-template #textField>
+                        <input type="text" class="form-control" [(ngModel)]="field.value"
+                          [disabled]="field.disabled || false" [placeholder]="field.label" (input)="onFieldChange()"
+                          name="field{{i}}" />
+                      </ng-template>
+                    </ng-container>
+                  </ng-template>
+
+                  <!-- Part Complexity Field Template -->
+                  <ng-template #partComplexityField>
+                    <label style="font-size: 0.61rem;">{{ field.label }}</label>
+                    <span class="info-icon" (click)="showInfo(field.infoMessage)">
+                      <i class="bi bi-info-circle"></i> :
+                    </span>
+                    <div class="radio-group">
+                      <div *ngFor="let option of field.options" class="radio-option">
+                        <input type="radio" [name]="'partComplexity' + item.title" [value]="option"
+                          [checked]="option === field.value" [(ngModel)]="field.value" (change)="field.value = option"
+                          style="margin-right: 5px;" />
+                        {{ option }}
+                      </div>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </form>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="action-buttons fixed">
+    <i class="bi bi-arrow-left-circle" style="margin-left: -10px;"></i><i class="bi bi-arrow-right-circle"></i>
+    <button class="btn" [ngClass]="{'btn-danger': hasChanges || hasManufacturingChanges, 'btn-primary': !hasChanges && !hasManufacturingChanges}"
+      style="margin-left: 70px; height: 30px; font-size: 0.7rem;" type="button" (click)="updateAndSave()">Update &
+      Save</button>
+    <button class="btn btn-secondary" type="button" (click)="recalculateCost()">Recalculate Cost</button>
+  </div>
+
+  <!-- Full-page overlay with loader, visible when 'loading' is true -->
+  <div *ngIf="loading" class="page-overlay">
+    <div class="loader"></div>
+  </div>
+</div>

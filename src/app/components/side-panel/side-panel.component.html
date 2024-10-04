@@ -1,0 +1,49 @@
+<div class="sidebar">
+    <div class="input-group mb-3">
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+        <input type="text" class="form-control" placeholder="Search..." aria-label="Search" (input)="onSearchChange($event)" [value]="searchTerm">
+        <ul class="list-group" *ngIf="filteredItems.length > 0">
+          <li 
+            class="list-group-item" 
+            *ngFor="let item of filteredItems" 
+            (click)="selectPart(item)">
+            {{ item.internalPartNumber }} <!-- Assuming internalPartNumber is the field you want to show -->
+          </li>
+      </ul>
+    </div>
+    <div class="scenarios card">
+      <label>Scenarios :</label>
+      <div class="scenario-box">
+        <button class="btn scenario-btn">  
+            <span class="scenario-text">Base Scenario</span>
+        </button>
+        <button class="btn edit-btn">&#9998;</button>
+        <button class="btn copy-btn">
+            <i class="fa fa-file-circle-plus"></i>
+        </button>
+      </div>
+    </div>
+  
+    <div class="scrollable-section">
+      <div class="frame-item card">
+        <!-- <i class="fas fa-cube"></i> -->
+        <span>J-Tree</span>
+        <!-- <i class="fa-regular fa-circle"></i> -->
+      </div>
+    
+  
+        <div class="add-remove-buttons">
+            <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add
+            </button>
+            <button class="btn btn-primary">
+                <i class="fas fa-minus"></i> Remove
+            </button>
+        </div>
+        
+        <div class=" animation card">
+
+        </div>
+    </div>
+</div>
+  

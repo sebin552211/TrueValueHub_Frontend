@@ -1,0 +1,98 @@
+/* .complete-costsummary{
+  flex-grow: 2;
+  overflow-y: auto;
+} */
+/* Container for the right bar */
+.right-bar {
+    display: flex;  /* Flexbox for horizontal alignment */
+    flex-wrap: wrap;  /* Allow wrapping to next row if needed */
+    justify-content: center;  /* Center align horizontally */
+    margin: 0 auto;
+    height: 550px;
+  }
+  /* Style for the card */
+  .card {
+    width: 340px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-right: -10px; /* Add margin around each card for spacing */
+    margin-left: -8px;
+  }
+  
+  /* Header styles */
+  .card-header {
+    background-color: #f8f9fa;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;  /* Center align the header text */
+    height: 35px;
+  }
+  
+  /* Card body styles */
+  .card-body {
+    /* padding: 1rem; */
+    font-size: 0.6rem;
+    /* margin-bottom: -5px; */
+    /* margin-top: -5px; */
+
+
+    align-content: center;
+  }
+  
+  /* Input group text styles */
+  .input-group-text {
+    background-color: #e9ecef;
+    height: 25px;  /* Reduced height */
+    padding: 3px;  /* Adjusted padding for better size */
+    font-size: 12px;  /* Smaller font size */
+    width: 60px;  /* Reduce the width of the dollar sign span */
+    margin-right: -45px;
+  }
+  
+  /* Input styles */
+  input {
+    text-align: right;
+    height: 25px;  /* Reduced height */
+    padding: 3px;  /* Adjust padding for compact size */
+    font-size: 12px;  /* Smaller font size */
+    width: 100px;  /* Decrease input box width */
+    box-sizing: border-box;
+  }
+  
+  /* Label styles */
+  label {
+    font-weight: bold;
+    margin-bottom: 0px;  /* Remove bottom margin from label */
+  }
+  
+  /* Readonly input background color */
+  input[readonly] {
+    background-color: #f1f1f1;
+  }
+  
+  /* Margin bottom reduction */
+  .mb-2 {
+    margin-bottom: 0.55rem !important;  /* Reduced margin between rows */
+  }
+  
+  /* Row and column alignment */
+  .row .col-md-4 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .card {
+      width: 100%;  /* Cards will take full width on smaller screens */
+    }
+    .right-bar {
+      justify-content: flex-start;  /* Align cards to the left on small screens */
+    }
+  }
+
+  .cost-section{
+    margin-top: 0px;
+
+  }
+
