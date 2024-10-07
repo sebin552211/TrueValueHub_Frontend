@@ -1,0 +1,33 @@
+<!-- <h2 class="project-list-title">Project List</h2> -->
+<p-tabView class="tab-view" (tabChange)="onTabChange($event)">
+  <p-tabPanel header="Create">
+    <p>Content for Create Tab</p>
+  </p-tabPanel>
+  <p-tabPanel header="Draft">
+    <div class="table-container">
+      <p-table [value]="projects" styleClass="p-datatable-sm">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>ProjectId</th>
+            <th>Project Name</th>
+            <th>Project Description</th>
+            <th>Created Date</th>
+            <th>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-project>
+          <tr>
+            <td>{{ project.projectId }}</td>
+            <td>{{ project.projectName }}</td>
+            <td>{{ project.projectDescription }}</td>
+            <td>{{ project.createdDate | date:'medium' }}</td>
+            <td>
+                <button pButton icon="pi pi-pencil" class="edit-button"></button>
+
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </p-tabPanel>
+</p-tabView>

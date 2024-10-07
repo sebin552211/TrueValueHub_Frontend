@@ -1,10 +1,11 @@
 import { Component,OnInit } from '@angular/core';
 import { NavbarComponent } from "../../../components/nav-bar/navbar.component";
+import { ProjectComponent } from "../../../components/project/project.component";
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [NavbarComponent],
+  imports: [NavbarComponent, ProjectComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
