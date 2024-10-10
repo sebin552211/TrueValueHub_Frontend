@@ -1,0 +1,76 @@
+.project-list-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Adjust as needed */
+    margin-bottom: 20px;
+}
+
+.tab-view {
+    border: 1px solid #e0e0e0; /* Tab view border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.tab-view .p-tabview-nav {
+    background-color: #f9f9f9; /* Tab background color */
+    border-bottom: 1px solid #ccc; /* Bottom border */
+}
+
+.tab-view .p-tabview-nav .p-tabview-nav-link {
+    color: #007bff; /* Tab link color */
+    font-weight: bold; /* Bold tab text */
+    padding: 10px 15px; /* Padding for tabs */
+    transition: background-color 0.3s; /* Transition effect */
+}
+
+.tab-view .p-tabview-nav .p-tabview-nav-link:hover {
+    background-color: #e9ecef; /* Hover effect */
+}
+
+.tab-view .p-tabview-nav .p-tabview-nav-link.p-tabview-nav-active {
+    background-color: #fff; /* Active tab background */
+    border-bottom: 2px solid #007bff; /* Active tab underline */
+}
+
+.table-container {
+    padding: 15px; /* Container padding */
+}
+
+.p-datatable {
+    border: none; /* Remove default border */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.p-datatable-header {
+    background-color: #f9f9f9; /* Header background */
+    border-bottom: 2px solid #007bff; /* Header bottom border */
+    font-weight: bold; /* Bold header text */
+}
+
+.p-datatable th {
+    color: #007bff; /* Header text color */
+    text-align: left; /* Align header text */
+    padding: 10px; /* Add padding */
+}
+
+.p-datatable td {
+    padding: 10px; /* Add padding */
+    border-bottom: 1px solid #e0e0e0; /* Row separator */
+}
+
+.edit-button {
+    background-color: white; /* White background */
+    border: none; /* Remove border */
+    color: blue; /* Change icon color to blue */
+    padding: 10px; /* Add padding for better appearance */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.edit-button .pi {
+    color: blue; /* Set the icon color to blue */
+}
+
+.edit-button:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+}
+

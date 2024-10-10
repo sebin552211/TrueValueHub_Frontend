@@ -146,54 +146,10 @@ export class ItemListComponent {
         ]
       }
     },
-    { title: 'Supporting Documents', icon: 'fa fa-file-alt', progress: 100, isExpanded: false, content: {
-        type: 'text',
-        data: []
-        }
-    },
-    
-    {
-      title: 'Cost Information',
-      icon: 'fa-dollar-sign',
-      progress: 80,
-      isExpanded: false,
-      content: {
-        type: 'form',
-        data: []
-      }
-    },
-    { title: 'Material Information', icon: 'fa fa-info-circle', progress: 80, isExpanded: false, content: {
-      type: 'form',
-      data: []
-    }},
     { title: 'Manufacturing Information', icon: 'fa fa-industry', progress: 80, isExpanded: false, content: {
       type: 'form',
       data: [this.manufacturings]
-    }},
-    { title: 'Tooling', icon: 'fa fa-toolbox', progress: 0, isExpanded: false, content: {
-      type: 'form',
-      data: []
-    }},
-    { title: 'Secondary Process', icon: 'fa fa-cogs', progress: 0, isExpanded: false,content: {
-      type: 'form',
-      data: []
-    }},
-    { title: 'Purchased (Catalogue) Parts Information', icon: 'fa fa-calendar', progress: 0, isExpanded: false, content: {
-      type: 'form',
-      data: []
-    }},
-    { title: 'Overhead & Profit', icon: 'fa fa-dollar-sign', progress: 100, isExpanded: false, content: {
-      type: 'form',
-      data: []
-    } },
-    { title: 'Packaging', icon: 'fa fa-box', progress: 100, isExpanded: false, content: {
-      type: 'form',
-      data: []
-    } },
-    { title: 'Logistics Cost', icon: 'fa fa-truck', progress: 100, isExpanded: false,content: {
-      type: 'form',
-      data: []
-    }},
+    }}
   ];
   FilteredItems: AccordionItem[] = [];
 
