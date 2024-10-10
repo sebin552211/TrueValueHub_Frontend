@@ -1,0 +1,49 @@
+<div *ngIf="selectedPart && manufacturings.length > 0">
+  <!-- Table with manufacturing details -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Sl #</th>
+        <th>Process Type</th>
+        <th>Machine Details</th>
+        <th>Machine Description</th>
+        <th>Cost($)</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let manufacturing of manufacturings; let i = index"
+          [ngClass]="{'active-row': manufacturing === selectedManufacturing}">
+        <td>{{ i + 1 }}</td>
+        <td>{{ manufacturing.processType }}</td>
+        <td>{{ manufacturing.machineDetails }}</td>
+        <td>{{ manufacturing.machineDescription }}</td>
+        <td>{{ manufacturing.cost | number: '1.3-3' }}</td>
+        <td class="action-icons">
+          <i class="bi bi-pencil-square edit-icon" matTooltip="Edit Manufacturing" 
+             (click)="onEditManufacturing(manufacturing)"></i>
+          <i class="bi bi-trash delete-icon" matTooltip="Delete Manufacturing" 
+             (click)="deleteManufacturing(manufacturing.manufacturingId)"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Hyperlink to add a new process -->
+<div *ngIf="selectedPart" style="font-size: 12px; text-align: right;" >
+  <a href="#" (click)="addProcess($event)">Add Process</a>
+</div>
+
+<!-- Conditionally display the update form -->
+<app-manufacturing-updateform *ngIf="selectedManufacturing" [manufacturing]="selectedManufacturing" (manufacturingUpdated)="onManufacturingUpdate($event)" (Manu_changesMade)="onManufacturingFieldChange($event)"></app-manufacturing-updateform>
+
+<!-- Display this message when no part is selected -->
+<div *ngIf="!selectedPart">
+  <p>Select Internal Part Number.</p>
+</div>
+
+<!-- Display this message when no manufacturing details are available -->
+<div *ngIf="selectedPart && manufacturings.length === 0">
+  <p>No Manufacturing details available for the selected part.</p>
+</div>

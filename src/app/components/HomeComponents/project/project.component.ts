@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectInterface } from '../../core/Interfaces/project.interface';
-import { ProjectService } from '../../core/Services/project.service';
+import { ProjectInterface } from '../../../core/Interfaces/project.interface';
+import { ProjectService } from '../../../core/Services/project.service';
 import { TableModule } from 'primeng/table';  // Import TableModule
 import { ButtonModule } from 'primeng/button'; // Import ButtonModule
 import { FormsModule } from '@angular/forms';

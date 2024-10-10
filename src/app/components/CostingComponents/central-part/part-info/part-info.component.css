@@ -1,0 +1,69 @@
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.7rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 40%; /* Adjust the width */
+    padding-right: 1rem;
+  }
+
+  .form-group1{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 33%; /* Adjust the width */
+    padding-right: 1rem;
+  }
+  
+  label {
+    font-weight:500;
+    font-size: 9px;
+    margin-bottom: 0.3rem;
+  }
+  
+  input[type="text"] {
+    padding: 0.5rem;
+    font-size: 0.65rem;
+  }
+  
+  .form-actions {
+    margin-top: 2rem;
+    text-align: right;
+  }
+  
+  button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .form-control{
+    height: 20px;
+  }
+
+  .radio-buttons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .radio-buttons label {
+    margin-right: 15px; /* Space between labels */
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  /* styles.css or part-info.component.css */
+.snackbar-error {
+  background-color: #e74c3c; /* Red color for error */
+  color: #fff;
+}
+
+.snackbar-success {
+  background-color: #2ecc71; /* Green color for success */
+  color: #fff;
+}
+
+  

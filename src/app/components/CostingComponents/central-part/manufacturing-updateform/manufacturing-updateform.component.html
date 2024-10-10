@@ -1,0 +1,28 @@
+<!-- Editable Form for Existing Manufacturing -->
+<div *ngIf="manufacturing" class="manufacturing-edit-form">
+    <span style="font-weight: 500; font-size: small;">Edit Manufacturing Details:</span>
+    <form (ngSubmit)="onSubmit()">
+      <div class="first-manufacturing-row" style="margin-top: 10px;">
+        <div class="form-group">
+          <label for="processType" style="font-size: smaller;">Process Type:</label>
+          <input id="processType" [(ngModel)]="manufacturing.processType" name="processType" class="form-control" placeholder="Process Type" required  style="width: 180px;" (input)="onManufacturingFieldChange()"/>
+        </div>
+        <div class="form-group">
+          <label for="machineDetails" style="font-size: smaller;">Machine Details:</label>
+          <input id="machineDetails" [(ngModel)]="manufacturing.machineDetails" name="machineDetails" class="form-control" placeholder="Machine Details" required  style="width: 180px;" (input)="onManufacturingFieldChange()"/>
+        </div>
+        <div class="form-group">
+          <label for="machineDescription" style="font-size: smaller;">Machine Description:</label>
+          <input id="machineDescription" [(ngModel)]="manufacturing.machineDescription" name="machineDescription" class="form-control" placeholder="Machine Description" required (input)="onManufacturingFieldChange()" style="width: 180px;" />
+        </div>
+      </div>
+      <div class="first-manufacturing-row">
+        <div class="form-group">
+          <label for="cost" style="font-size: smaller;">Cost($):</label>
+          <input id="cost" type="number" [(ngModel)]="manufacturing.cost" name="cost" class="form-control" placeholder="Cost" required (change)="onManufacturingFieldChange()" style="width: 180px;" />
+        </div>
+      </div>
+      <a href="javascript:void(0)" (click)="hideDetails()" style="margin-left: 502px; font-size: 12px;">Hide Details</a>
+    </form>
+  </div>
+  

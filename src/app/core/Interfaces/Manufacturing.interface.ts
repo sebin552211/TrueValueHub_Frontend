@@ -12,4 +12,5 @@ export interface Manufacturing {
     loadingTime:number;
     // Foreign key reference to the Part
     partId: number;
+    part?: number
 }

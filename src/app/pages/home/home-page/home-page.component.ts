@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { NavbarComponent } from "../../../components/nav-bar/navbar.component";
-import { ProjectComponent } from "../../../components/project/project.component";
+import { ProjectComponent } from "../../../components/HomeComponents/project/project.component";
 
 @Component({
   selector: 'app-home-page',

@@ -1,0 +1,49 @@
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-group {
+  flex: 1 1 calc(33.333% - 10px); 
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  font-size: 10px;
+  height: 20px;
+  margin-top: 5px;
+}
+
+.form-control-manufacturing{
+  width:80%;
+  padding: 8px;
+  font-size: 10px;
+  height: 20px;
+  margin-top: 5px;
+}
+
+.form-control-dropdown{
+  width: 100%;
+  /* padding: 8px; */
+  font-size: 10px;
+  height: 20px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid gainsboro;
+}
+
+.form-control-dropdown:focus {
+  border-color: #80bdff; /* Border color when focused */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 5px rgba(128, 189, 255, 0.5); /* Shadow on focus */
+}
+
+.first-manufacturing-row{
+  display: flex;
+}
+
+

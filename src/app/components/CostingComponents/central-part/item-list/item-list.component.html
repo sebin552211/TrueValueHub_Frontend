@@ -1,0 +1,58 @@
+<div class="central-part-container">
+  <div class="header">
+    <h3 class="items" style="font-size:medium; margin-top: 8px;">Items</h3>
+    <div class="expand-collapse-buttons">
+      <button (click)="expandAll()">Expand All</button>
+      <button (click)="collapseAll()">Collapse All</button>
+    </div>
+  </div>
+
+  <!-- Accordion Items -->
+  <div *ngFor="let item of items" class="accordion-item">
+    <div class="accordion-header" (click)="toggleItem(item)">
+      <div class="item-icon">
+        <i class="fa" [ngClass]="item.icon"></i>
+      </div>
+      <div class="item-info">
+        <span>{{ item.title }}</span>
+        <div class="item-progress">
+          <div class="progress-bar">
+            <div class="progress" [style.width]="item.progress + '%'"></div>
+          </div>
+          <span class="progress-text">{{ item.progress }}% Completed</span>
+        </div>
+      </div>
+      <div class="item-toggle">
+        <i [class]="item.isExpanded ? 'fa fa-minus' : 'fa fa-plus'"></i>
+      </div>
+    </div>
+
+    <!-- Form Content (Shown when the item is expanded) -->
+    <div *ngIf="item.isExpanded" class="accordion-content">
+      <!-- Load PartInfoComponent only if "Part Information" accordion is clicked -->
+      <app-part-info *ngIf="item.title === 'Part Information'" [selectedPart]="selectedPart" (changesMade)="onPartInfoChange($event)"></app-part-info>
+
+      <!-- Load ManufacturingInfoComponent only if "Manufacturing Information" accordion is clicked -->
+      <app-manufacturing-info *ngIf="item.title === 'Manufacturing Information'" [selectedPart]="selectedPart" (Manu_changesMade)="onManufacturingChange($event)"></app-manufacturing-info>
+    </div>
+  </div>
+
+  <!-- Action buttons -->
+  <div class="action-buttons fixed">
+    <i class="bi bi-arrow-left-circle" style="margin-left: -10px;"></i>
+    <i class="bi bi-arrow-right-circle"></i>
+    <button class="btn" 
+        [ngClass]="{'btn-danger': hasChanges || hasManufacturingChanges, 'btn-primary': !hasChanges && !hasManufacturingChanges}"
+        style="margin-left: 70px; height: 30px; font-size: 0.7rem;" 
+        type="button" 
+        (click)="updateAndSave()">Update & Save
+</button>
+
+    <button class="btn btn-secondary" type="button" (click)="recalculateCost()">Recalculate Cost</button>
+  </div>
+
+  <!-- Full-page overlay with loader -->
+  <div *ngIf="loading" class="page-overlay">
+    <div class="loader"></div>
+  </div>
+</div>
