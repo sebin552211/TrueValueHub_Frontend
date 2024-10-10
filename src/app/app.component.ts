@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./components/nav-bar/navbar.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SidePanelComponent } from './components/side-panel/side-panel.component';
-import { ItemListComponent } from './components/item-list/item-list.component';
-import { ProjectComponent } from './components/project/project.component';
+import { SidePanelComponent } from './components/CostingComponents/side-panel/side-panel.component';
+import { ItemListComponent } from './components/CostingComponents/central-part/item-list/item-list.component';
+import { ProjectComponent } from './components/HomeComponents/project/project.component';
 
 @Component({
   selector: 'app-root',

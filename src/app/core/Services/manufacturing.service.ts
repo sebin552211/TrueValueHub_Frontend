@@ -15,6 +15,7 @@ export class ManufacturingService {
   // Update manufacturing details
   updateManufacturing(partId: number, manufacturingId: number, manufacturing: Manufacturing): Observable<any> {
     manufacturing.partId = partId;
+    console.log('Updating manufacturing:', manufacturing);
     return this.http.put(`${this.apiUrl}/${partId}/manufacturings/${manufacturingId}`, manufacturing, {
       responseType: 'text' as 'json'
     });

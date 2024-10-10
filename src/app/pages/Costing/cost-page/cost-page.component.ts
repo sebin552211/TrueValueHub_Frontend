@@ -1,8 +1,8 @@
 import { Component,OnInit } from '@angular/core';
-import { SidePanelComponent } from '../../../components/side-panel/side-panel.component';
+import { SidePanelComponent } from '../../../components/CostingComponents/side-panel/side-panel.component';
 import { NavbarComponent } from "../../../components/nav-bar/navbar.component";
-import { ItemListComponent } from '../../../components/item-list/item-list.component';
-import { CostSummaryComponent } from '../../../components/cost-summary/cost-summary.component';
+import { ItemListComponent } from '../../../components/CostingComponents/central-part/item-list/item-list.component';
+import { CostSummaryComponent } from '../../../components/CostingComponents/cost-summary/cost-summary.component';
 import { Part } from '../../../core/Interfaces/Part.interface';
 
 @Component({

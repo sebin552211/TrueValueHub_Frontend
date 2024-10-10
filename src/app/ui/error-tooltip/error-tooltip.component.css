@@ -1,0 +1,11 @@
+.tooltip-dialog {
+    position: absolute;
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 5px;
+    border-radius: 4px;
+    z-index: 1000; /* Ensure it shows above other elements */
+    font-size: 8px;
+    margin-left: 70px;
+  }
