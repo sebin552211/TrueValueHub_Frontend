@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Part } from '../../../core/Interfaces/Part.interface';
 import { PartService } from '../../../core/Services/part.service';
 import { CommonModule } from '@angular/common';
+import { Project } from '../../../core/Interfaces/project.interface';
 
 @Component({
   selector: 'app-side-panel',
@@ -17,14 +18,20 @@ export class SidePanelComponent {
 
   @Output() partSelected = new EventEmitter<Part>();
 
+  @Input() selectedProject: Project | null = null; // Accept selected project as input
+
   constructor(private partService: PartService) {}
+
+  ngOnInit(): void {
+    console.log('Selected Project in Side Panel:', this.selectedProject);
+  }
 
   onSearchChange(event: Event) {
     const input = event.target as HTMLInputElement; 
     this.searchTerm = input.value;
   
     if (this.searchTerm) {
-      this.partService.getPartById(this.searchTerm).subscribe(
+      this.partService.getPartByInternalPartNumber(this.searchTerm).subscribe(
         (part) => {
           this.filteredItems = [part]; // Show matched part in dropdown
           console.log('Fetched part data:', part); // Log part data
@@ -46,5 +53,10 @@ export class SidePanelComponent {
     this.selectedPart = part;
     this.partSelected.emit(part); // Emit the selected part to parent component
     console.log('Selected part emitted:', part); // Debug log
+  }
+
+  // Method to safely return parts
+  getParts(): Part[] {
+    return (this.selectedProject?.parts as any)?.$values || [];
   }
 }

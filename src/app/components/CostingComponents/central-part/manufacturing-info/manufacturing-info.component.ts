@@ -57,7 +57,7 @@ ngOnInit() {
     if (changes['selectedPart']) {
       console.log('Selected part:', this.selectedPart); // Log selected part to check if it's passed correctly
       if (this.selectedPart && this.selectedPart.partId) {
-        this.fetchManufacturingDetails(this.selectedPart.partId);
+        this.fetchManufacturingDetails(this.selectedPart.internalPartNumber);
       } else {
         console.log('No part selected.');
         this.manufacturings = []; // Reset manufacturing details if no part is selected
@@ -66,23 +66,21 @@ ngOnInit() {
   }
 
   // Method to fetch manufacturing details based on selected part
-  fetchManufacturingDetails(partId: number) {
-    console.log('Loading manufacturing data for partId:', partId);
-    this.partService.getPartById(partId.toString()).subscribe(
-      (part: Part) => {
-        // Assuming the manufacturing details are stored under the materials property.
-        this.manufacturings = part.manufacturings.$values;
-        
-        // Automatically select the first manufacturing item for editing if available
-        if (this.manufacturings.length > 0) {
-          this.onEditManufacturing(this.manufacturings[0]); // Activate edit for the first row
+  fetchManufacturingDetails(internalPartNumber: string) {
+    console.log('Loading manufacturing data for part number:', internalPartNumber);
+    this.partService.getPartByInternalPartNumber(internalPartNumber).subscribe(
+        (part: Part) => {
+            this.manufacturings = part.manufacturings.$values;
+            if (this.manufacturings.length > 0) {
+                this.onEditManufacturing(this.manufacturings[0]);
+            }
+        },
+        (error) => {
+            console.error('Error fetching manufacturing data:', error);
         }
-      },
-      (error) => {
-        console.error('Error fetching manufacturing data:', error);
-      }
     );
-  }
+}
+
 
   // Method to add an empty manufacturing entry
   addProcess(event: MouseEvent) {

@@ -26,12 +26,25 @@
   
     <div class="scrollable-section">
       <div class="frame-item card">
-        <!-- <i class="fas fa-cube"></i> -->
-        <span>J-Tree</span>
-        <!-- <i class="fa-regular fa-circle"></i> -->
+        <ul>
+          <!-- Project Name (Root) -->
+          <li>
+            <span>{{ selectedProject?.projectName }}</span>
+      
+            <!-- Parts List (Children) -->
+            <ul *ngIf="getParts().length > 0">
+              <li *ngFor="let part of getParts()">
+                <a href="#" (click)="selectPart(part)">
+                  {{ part.internalPartNumber }}
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
-    
-  
+      
+      
+      
         <div class="add-remove-buttons">
             <button class="btn btn-primary">
                 <i class="fas fa-plus"></i> Add
