@@ -20,9 +20,9 @@
         <td>{{ manufacturing.machineDescription }}</td>
         <td>{{ manufacturing.cost | number: '1.3-3' }}</td>
         <td class="action-icons">
-          <i class="bi bi-pencil-square edit-icon" matTooltip="Edit Manufacturing" 
+          <i class="bi bi-pencil-square edit-icon" matTooltip="Edit Manufacturing" matTooltipPosition="above" 
              (click)="onEditManufacturing(manufacturing)"></i>
-          <i class="bi bi-trash delete-icon" matTooltip="Delete Manufacturing" 
+          <i class="bi bi-trash delete-icon" matTooltip="Delete Manufacturing" matTooltipPosition="above" 
              (click)="deleteManufacturing(manufacturing.manufacturingId)"></i>
         </td>
       </tr>

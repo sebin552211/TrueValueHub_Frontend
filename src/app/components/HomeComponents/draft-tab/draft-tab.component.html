@@ -1,22 +1,84 @@
 <div class="table-container">
-  <p-table [value]="projects" styleClass="p-datatable-sm">
+  <p-table 
+    [value]="projects" 
+    [paginator]="true" 
+    [rows]="10" 
+    [sortMode]="'single'" 
+    [lazy]="true" 
+    (onLazyLoad)="loadProjects($event)" 
+    [totalRecords]="totalRecords"  
+    [expandedRowKeys]="expandedRows"    
+    [dataKey]="'projectId'" 
+    styleClass="p-datatable-sm"
+  >
     <ng-template pTemplate="header">
       <tr>
-        <th>ProjectId</th>
-        <th>Project Name</th>
-        <th>Project Description</th>
-        <th>Created Date</th>
+        <th></th>
+        <th pSortableColumn="projectId">ProjectId <p-sortIcon [field]="'projectId'"></p-sortIcon></th>
+        <th pSortableColumn="projectName">Project Name <p-sortIcon [field]="'projectName'"></p-sortIcon></th>
+        <th pSortableColumn="projectDescription">Project Description <p-sortIcon [field]="'projectDescription'"></p-sortIcon></th>
+        <th pSortableColumn="createdDate">Created Date <p-sortIcon [field]="'createdDate'"></p-sortIcon></th>
         <th>Action</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-project>
-      <tr>
+    
+    <ng-template pTemplate="body" let-project let-expanded="expanded" let-i="rowIndex">
+      <tr [ngClass]="{'even-row': i % 2 === 0, 'odd-row': i % 2 !== 0}">
+        <td>
+          <p-button 
+            type="button" 
+            pRipple 
+            [pRowToggler]="project" 
+            [text]="true" 
+            [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+            [disabled]="!project.parts || project.parts.length === 0"
+          ></p-button>
+        </td>
         <td>{{ project.projectId }}</td>
         <td>{{ project.projectName }}</td>
         <td>{{ project.projectDescription }}</td>
-        <td>{{ project.createdDate | date:'medium' }}</td>
+        <td>{{ project.createdDate | date:'dd-MM-yyyy' }}</td>
         <td>
-          <button pButton icon="pi pi-pencil" class="edit-button" (click)="editProject(project)"></button>
+          <button 
+            pButton 
+            icon="pi pi-pencil" 
+            class="edit-button" 
+            (click)="editProject(project)" 
+            matTooltip="Edit Project" 
+            matTooltipPosition="above"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="rowexpansion"  let-project>
+      <tr>
+        <td colspan="4" >
+          <div>
+            <p-table [value]="project.parts" dataKey="partId">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Part ID</th>
+                  <th>Internal Part Number</th>
+                  <th>Supplier Name</th>
+                  <th>Delivery Site Name</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-part>
+                <tr>
+                  <td>{{ part.partId }}</td>
+                  <td>{{ part.internalPartNumber }}</td>
+                  <td>{{ part.supplierName }}</td>
+                  <td>{{ part.deliverySiteName }}</td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                  <td colspan="4">No parts available for this project.</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
         </td>
       </tr>
     </ng-template>

@@ -2,19 +2,19 @@
     <div class="input-group mb-3">
         <span class="input-group-text"><i class="fas fa-search"></i></span>
         <input type="text" class="form-control" placeholder="Search..." aria-label="Search" (input)="onSearchChange($event)" [value]="searchTerm">
-        <ul class="list-group" *ngIf="filteredItems.length > 0">
+        <ul class="list-group" *ngIf="filteredProjects.length > 0">
           <li 
             class="list-group-item" 
-            *ngFor="let item of filteredItems" 
-            (click)="selectPart(item)">
-            {{ item.internalPartNumber }} <!-- Assuming internalPartNumber is the field you want to show -->
+            *ngFor="let project of filteredProjects" 
+            (click)="selectProject(project)">
+            {{ project.projectName }} <!-- Assuming internalPartNumber is the field you want to show -->
           </li>
       </ul>
     </div>
     <div class="scenarios card">
       <label>Scenarios :</label>
       <div class="scenario-box">
-        <button class="btn scenario-btn">  
+        <button class="btn scenario-btn" style="background-color: #007bff;;">  
             <span class="scenario-text">Base Scenario</span>
         </button>
         <button class="btn edit-btn">&#9998;</button>
@@ -25,31 +25,18 @@
     </div>
   
     <div class="scrollable-section">
+      
       <div class="frame-item card">
-        <ul>
-          <!-- Project Name (Root) -->
-          <li>
-            <span>{{ selectedProject?.projectName }}</span>
-      
-            <!-- Parts List (Children) -->
-            <ul *ngIf="getParts().length > 0">
-              <li *ngFor="let part of getParts()">
-                <a href="#" (click)="selectPart(part)">
-                  {{ part.internalPartNumber }}
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+        <div id="projectTree">
       </div>
-      
+    </div>
       
       
         <div class="add-remove-buttons">
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" style="background-color: #007bff;;">
                 <i class="fas fa-plus"></i> Add
             </button>
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" style="background-color: #007bff;;">
                 <i class="fas fa-minus"></i> Remove
             </button>
         </div>

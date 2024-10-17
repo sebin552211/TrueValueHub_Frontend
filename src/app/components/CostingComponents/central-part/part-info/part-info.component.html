@@ -1,135 +1,158 @@
 <form [formGroup]="partForm" (ngSubmit)="onUpdate()">
-    <div class="form-row">
-      <div class="form-group">
-        <label for="internalPartNumber">Internal Part Number <i matTooltip="This is the Internal Part Number" class="fa fa-info-circle" ></i> :</label>
-        <input formControlName="internalPartNumber" id="internalPartNumber" type="text" class="form-control" />
-        <app-error-tooltip
+  <div class="form-row">
+    <div class="form-group">
+      <label for="internalPartNumber">Internal Part Number <i matTooltip="This is the Internal Part Number" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+      <input formControlName="internalPartNumber" id="internalPartNumber" type="text" class="form-control" placeholder="Enter Internal Part Number" />
+      <app-error-tooltip
         *ngIf="partForm.get('internalPartNumber')?.invalid && partForm.get('internalPartNumber')?.touched"
         [message]="'Internal Part Number is required.'"></app-error-tooltip>
-      </div>
-  
-      <div class="form-group">
-        <label for="supplierName">Supplier Name <i matTooltip="This is the Supplier Name"  class="fa fa-info-circle" ></i> :</label>
-        <input formControlName="supplierName" id="supplierName" type="text" class="form-control" (input)="onFieldChange()"/>
-        <app-error-tooltip
+    </div>
+
+    <div class="form-group">
+      <label for="supplierName">Supplier Name <i matTooltip="This is the Supplier Name" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+      <select formControlName="supplierName" id="supplierName" class="form-control" (change)="onFieldChange()">
+        <option value="" disabled selected>Select Supplier</option>
+        <option value="Supplier A">Supplier A</option>
+        <option value="Supplier B">Supplier B</option>
+        <option value="Supplier C">Supplier C</option>
+      </select>
+      <app-error-tooltip
         *ngIf="partForm.get('supplierName')?.invalid && partForm.get('supplierName')?.touched"
         [message]="'Supplier Name is required.'"></app-error-tooltip>
-      </div>
-  
-      <div class="form-group">
-        <label for="deliverySiteName">Delivery Site Name <i matTooltip="This is the Delivery Site Name"  class="fa fa-info-circle"></i> :</label>
-        <input formControlName="deliverySiteName" id="deliverySiteName" type="text" class="form-control" (input)="onFieldChange()"/>
-        <app-error-tooltip
+    </div>
+
+    <div class="form-group">
+      <label for="deliverySiteName">Delivery Site Name <i matTooltip="This is the Delivery Site Name" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+      <select formControlName="deliverySiteName" id="deliverySiteName" class="form-control" (change)="onFieldChange()">
+        <option value="" disabled selected>Select Delivery Site</option>
+        <option value="Site A">Site A</option>
+        <option value="Site B">Site B</option>
+        <option value="Site C">Site C</option>
+      </select>
+      <app-error-tooltip
         *ngIf="partForm.get('deliverySiteName')?.invalid && partForm.get('deliverySiteName')?.touched"
         [message]="'Delivery Site Name is required.'"></app-error-tooltip>
-      </div>
     </div>
-  
-    <div class="form-row">
-      <div class="form-group">
-        <label for="drawingNumber">Drawing Number <i matTooltip="This is the Drawing Number"  class="fa fa-info-circle"></i> :</label>
-        <input formControlName="drawingNumber" id="drawingNumber" type="text" class="form-control" (input)="onFieldChange()"/>
-        <app-error-tooltip
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="drawingNumber">Drawing Number <i matTooltip="This is the Drawing Number" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+      <input formControlName="drawingNumber" id="drawingNumber" type="text" class="form-control" placeholder="Enter Drawing Number" (input)="onFieldChange()"/>
+      <app-error-tooltip
         *ngIf="partForm.get('drawingNumber')?.invalid && partForm.get('drawingNumber')?.touched"
         [message]="'Drawing Number is required.'"></app-error-tooltip>
-      </div>
-  
-      <div class="form-group">
-        <label for="incoTerms">Inco Terms <i matTooltip="This is the Inco Terms"  class="fa fa-info-circle"></i> :</label>
-        <input formControlName="incoTerms" id="incoTerms" type="text" class="form-control" (input)="onFieldChange()"/>
-        <app-error-tooltip
+    </div>
+
+    <div class="form-group">
+      <label for="incoTerms">Inco Terms <i matTooltip="This is the Inco Terms" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+      <input formControlName="incoTerms" id="incoTerms" type="text" class="form-control" placeholder="Enter Inco Terms" (input)="onFieldChange()"/>
+      <app-error-tooltip
         *ngIf="partForm.get('incoTerms')?.invalid && partForm.get('incoTerms')?.touched"
         [message]="'Inco Terms is required.'"></app-error-tooltip>
-      </div>
-  
-      <div class="form-group">
-        <label for="annualVolume">Annual Volume (Nos.) <i matTooltip="This is the Annual Volume"  class="fa fa-info-circle"></i> :</label>
-        <input formControlName="annualVolume" id="annualVolume" type="text" class="form-control" (input)="onFieldChange()"/>
-        <app-error-tooltip
+    </div>
+
+    <div class="form-group">
+      <label for="annualVolume">Annual Volume (Nos.) <i matTooltip="This is the Annual Volume" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+      <input formControlName="annualVolume" id="annualVolume" type="number" class="form-control" placeholder="Enter Annual Volume" (input)="onFieldChange()"/>
+      <app-error-tooltip
         *ngIf="partForm.get('annualVolume')?.invalid && partForm.get('annualVolume')?.touched"
         [message]="'Annual Volume is required.'"></app-error-tooltip>
-      </div>
     </div>
-  
-    <div class="form-row">
-      <div class="form-group">
-        <label for="bomQty">BOM Qty (Nos.) <i matTooltip="This is the BOM Quantity"  class="fa fa-info-circle"></i> :</label>
-        <input formControlName="bomQty" id="bomQty" type="text" class="form-control" (input)="onFieldChange()"/>
-        <app-error-tooltip
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="bomQty">BOM Qty (Nos.) <i matTooltip="This is the BOM Quantity" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+      <input formControlName="bomQty" id="bomQty" type="number" class="form-control" placeholder="Enter BOM Qty" (input)="onFieldChange()"/>
+      <app-error-tooltip
         *ngIf="partForm.get('bomQty')?.invalid && partForm.get('bomQty')?.touched"
         [message]="'BOM Qty is required.'"></app-error-tooltip>
-      </div>
-  
-      <div class="form-group">
-        <label for="deliveryFrequency">Delivery Frequency (days) <i matTooltip="This is the Delivery Frequency"  class="fa fa-info-circle"></i> :</label>
-        <input formControlName="deliveryFrequency" id="deliveryFrequency" type="text" class="form-control" (input)="onFieldChange()"/>
-        <app-error-tooltip
+    </div>
+
+    <div class="form-group">
+      <label for="deliveryFrequency">Delivery Frequency (days) <i matTooltip="This is the Delivery Frequency" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+      <input formControlName="deliveryFrequency" id="deliveryFrequency" type="number" class="form-control" placeholder="Enter Delivery Frequency" (input)="onFieldChange()"/>
+      <app-error-tooltip
         *ngIf="partForm.get('deliveryFrequency')?.invalid && partForm.get('deliveryFrequency')?.touched"
         [message]="'Delivery Frequency is required.'"></app-error-tooltip>
-      </div>
-  
-      <div class="form-group">
-        <label for="lotSize">Lot size (Nos.) <i matTooltip="This is the Lot size in numbers"  class="fa fa-info-circle"></i> :</label>
-        <input formControlName="lotSize" id="lotSize" type="text" class="form-control" (input)="onFieldChange()"/>
-        <app-error-tooltip
+    </div>
+
+    <div class="form-group">
+      <label for="lotSize">Lot size (Nos.) <i matTooltip="This is the Lot size in numbers" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+      <input formControlName="lotSize" id="lotSize" type="number" class="form-control" placeholder="Enter Lot Size" (input)="onFieldChange()"/>
+      <app-error-tooltip
         *ngIf="partForm.get('lotSize')?.invalid && partForm.get('lotSize')?.touched"
         [message]="'LOT Size is required.'"></app-error-tooltip>
-      </div>
     </div>
-  
-    <div class="form-row">
-        <div class="form-group">
-            <label for="partComplexity">Part Complexity <i matTooltip="This is the Part Complexity"  class="fa fa-info-circle"></i> :</label>
-            <div class="radio-buttons">
-              <label><input formControlName="partComplexity" type="radio" value="Low" (change)="onFieldChange()"/> Low</label>
-              <label><input formControlName="partComplexity" type="radio" value="Medium" (change)="onFieldChange()"/> Medium</label>
-              <label><input formControlName="partComplexity" type="radio" value="High" (change)="onFieldChange()"/> High</label>
-            </div>
-          </div>
-          
-  
-      <div class="form-group">
-        <label for="packagingType">Packaging Type <i matTooltip="This is the Packaging Type"  class="fa fa-info-circle"></i> :</label>
-        <input formControlName="packagingType" id="packagingType" type="text" class="form-control" (input)="onFieldChange()"/>
-        <app-error-tooltip
-        *ngIf="partForm.get('packagingType')?.invalid && partForm.get('packagingType')?.touched"
-        [message]="'Packaging Type is required.'"></app-error-tooltip>
-      </div>
-  
-      <div class="form-group">
-        <label for="productLifeRemaining">Product Life Remaining (Yrs) <i matTooltip="This is the Product Life Remaining"  class="fa fa-info-circle"></i> :</label>
-        <input formControlName="productLifeRemaining" id="productLifeRemaining" type="text" class="form-control" (input)="onFieldChange()"/>
-        <app-error-tooltip
-        *ngIf="partForm.get('productLifeRemaining')?.invalid && partForm.get('productLifeRemaining')?.touched"
-        [message]="'Product Life Remaining is required.'"></app-error-tooltip>
-      </div>
-    </div>
-  
-    <div class="form-row">
-      <div class="form-group">
-        <label for="manufacturingCategory">Manufacturing Category <i matTooltip="This is the Manufacturing Category"  class="fa fa-info-circle"></i> :</label>
-        <input formControlName="manufacturingCategory" id="manufacturingCategory" type="text" class="form-control" (input)="onFieldChange()"/>
-        <app-error-tooltip
-        *ngIf="partForm.get('manufacturingCategory')?.invalid && partForm.get('manufacturingCategory')?.touched"
-        [message]="'Manufacturing Category is required.'"></app-error-tooltip>
-      </div>
-  
-      <div class="form-group">
-        <label for="paymentTerms">Payment Terms (days) <i matTooltip="This is the Payment Terms in days" class="fa fa-info-circle"></i> :</label>
-        <input formControlName="paymentTerms" id="paymentTerms" type="text" class="form-control" (input)="onFieldChange()"/>
-        <app-error-tooltip
-        *ngIf="partForm.get('paymentTerms')?.invalid && partForm.get('paymentTerms')?.touched"
-        [message]="'Payment Terms is required.'"></app-error-tooltip>
-      </div>
-  
-      <div class="form-group">
-        <label for="lifeTimeQuantityRemaining">Life Time Quantity Remaining (Nos.) <i matTooltip="This is the Life Time Quantity Remaining in numbers"  class="fa fa-info-circle"></i> :</label>
-        <input formControlName="lifeTimeQuantityRemaining" id="lifeTimeQuantityRemaining" type="text" class="form-control" (input)="onFieldChange()"/>
-        <app-error-tooltip
-        *ngIf="partForm.get('lifeTimeQuantityRemaining')?.invalid && partForm.get('lifeTimeQuantityRemaining')?.touched"
-        [message]="'Life Time Quantity Remaining is required.'"></app-error-tooltip>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="partComplexity">Part Complexity <i matTooltip="This is the Part Complexity" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+      <div class="radio-buttons">
+        <label><input formControlName="partComplexity" type="radio" value="Low" (change)="onFieldChange()"/> Low</label>
+        <label><input formControlName="partComplexity" type="radio" value="Medium" (change)="onFieldChange()" /> Medium</label>
+        <label><input formControlName="partComplexity" type="radio" value="High" (change)="onFieldChange()" /> High</label>
       </div>
     </div>
 
-  </form>
-  
+    <div class="form-group">
+      <label for="packagingType">Packaging Type <i matTooltip="This is the Packaging Type" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+      <select formControlName="packagingType" id="packagingType" class="form-control" (change)="onFieldChange()">
+        <option value="" disabled selected>Select Packaging Type</option>
+        <option value="Box">Box</option>
+        <option value="Card">Card</option>
+      </select>
+      <app-error-tooltip
+        *ngIf="partForm.get('packagingType')?.invalid && partForm.get('packagingType')?.touched"
+        [message]="'Packaging Type is required.'"></app-error-tooltip>
+    </div>
+
+    <div class="form-group">
+      <label for="productLifeRemaining">Product Life Remaining (Yrs) <i matTooltip="This is the Product Life Remaining" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+      <input formControlName="productLifeRemaining" id="productLifeRemaining" type="number" class="form-control" placeholder="Enter Product Life Remaining" (input)="onFieldChange()"/>
+      <app-error-tooltip
+        *ngIf="partForm.get('productLifeRemaining')?.invalid && partForm.get('productLifeRemaining')?.touched"
+        [message]="'Product Life Remaining is required.'"></app-error-tooltip>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="manufacturingCategory">Manufacturing Category <i matTooltip="This is the Manufacturing Category" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+      <select formControlName="manufacturingCategory" id="manufacturingCategory" class="form-control" (change)="onFieldChange()">
+        <option value="" disabled selected>Select Manufacturing Category</option>
+        <option value="Category A">Category A</option>
+        <option value="Category B">Category B</option>
+        <option value="Category C">Category C</option>
+      </select>
+      <app-error-tooltip
+      *ngIf="partForm.get('manufacturingCategory')?.invalid && partForm.get('manufacturingCategory')?.touched"
+      [message]="'Manufacturing Category is required.'"></app-error-tooltip>
+  </div>
+
+  <div class="form-group">
+    <label for="paymentTerms">Payment Terms (days) <i matTooltip="This is the Payment Terms in days" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+    <select formControlName="paymentTerms" id="paymentTerms" class="form-control" (change)="onFieldChange()">
+      <option value="" disabled selected>Select Payment Terms</option>
+      <option value="Net 30">Net 30</option>
+      <option value="Net 60">Net 60</option>
+      <option value="Net 90">Net 90</option>
+    </select>
+    <app-error-tooltip
+      *ngIf="partForm.get('paymentTerms')?.invalid && partForm.get('paymentTerms')?.touched"
+      [message]="'Payment Terms is required.'"></app-error-tooltip>
+  </div>
+
+  <div class="form-group">
+    <label for="lifeTimeQuantityRemaining">Life Time Quantity Remaining (Nos.) <i matTooltip="This is the Life Time Quantity Remaining in numbers" matTooltipPosition="above" class="fa fa-info-circle"></i>:</label>
+    <input formControlName="lifeTimeQuantityRemaining" id="lifeTimeQuantityRemaining" type="number" class="form-control" placeholder="Enter Life Time Quantity Remaining" (input)="onFieldChange()"/>
+    <app-error-tooltip
+      *ngIf="partForm.get('lifeTimeQuantityRemaining')?.invalid && partForm.get('lifeTimeQuantityRemaining')?.touched"
+      [message]="'Life Time Quantity Remaining is required.'"></app-error-tooltip>
+  </div>
+</div>
+
+</form>
+

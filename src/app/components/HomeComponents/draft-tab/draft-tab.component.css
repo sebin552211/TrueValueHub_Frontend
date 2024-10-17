@@ -1,10 +1,15 @@
 .table-container {
     padding: 20px;
   }
-  
-  .p-datatable-sm {
-    width: 100%;
+
+  .table-container th{
+    background-color: rgb(236, 246, 253);
+    border: 1px solid black; /* Border for table headers */
   }
+
+  .table-container td {
+    border: 1px solid rgb(177, 177, 177);; /* Border for table cells */
+}
   
   .edit-button {
     background-color: #007bff;
@@ -18,4 +23,30 @@
   .edit-button:hover {
     background-color: #0056b3;
   }
+
+  .even-row {
+    background-color: #fefefe; /* Light gray for even rows */
+  }
+  
+  .odd-row {
+    background-color: #e6e6e6; /* White for odd rows */
+  }
+
+  .partsTable {
+    padding-left: 10%;
+    width: 100%; /* Ensures full width */
+    border-collapse: collapse; /* Ensures borders do not double */
+}
+
+.partsTable th, .partsTable td {
+
+    padding: 8px; /* Padding for cells */
+}
+
+.partsTable th {
+    background-color: #f2f2f2; /* Background for header cells */
+    font-weight: bold;
+}
+
+  
   

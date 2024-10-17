@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { PartInfoComponent } from "../part-info/part-info.component";
 import { ManufacturingInfoComponent } from "../manufacturing-info/manufacturing-info.component";
 import { Part } from '../../../../core/Interfaces/Part.interface';
+import { Project } from '../../../../core/Interfaces/project.interface';
 
 // Define the interfaces
 export interface AccordionContent {
@@ -34,18 +35,23 @@ export class ItemListComponent {
   isEditing: boolean = false; // Control form visibility
   hasChanges: boolean = false; // Track changes
   hasManufacturingChanges: boolean = false;
-  loading = false; // For the loader
-  
+  loading: boolean = false; // Initialize the loading state
 
-  @Input() selectedPart: Part | null = null;
+  
+  @Input() selectedProject: Project | null = null;
+  @Input() searchedProjectId : any | null = null;
+
+  @Input() selectedPart: any | null = null;
   @Output() partSelected = new EventEmitter<Part>();
 
   @ViewChild(PartInfoComponent) partinfoComponent!:PartInfoComponent;
   @ViewChild(ManufacturingInfoComponent) manufacturinginfoComponent!:ManufacturingInfoComponent;
 
   ngOnChanges(): void {
-
     console.log(this.selectedPart, "hello");
+    console.log(this.selectedProject)
+    console.log(this.searchedProjectId);
+    
   }
 
   
@@ -100,15 +106,27 @@ export class ItemListComponent {
 
   // Update and save method placeholder
   updateAndSave() {
+    // Set loading to true to show the loader
+    this.loading = true;
+
+    // Call the update functions for the components
     if (this.partinfoComponent) {
         this.partinfoComponent.onUpdate();
     }
     if (this.manufacturinginfoComponent) {      
         this.manufacturinginfoComponent.updateAndSave();
     }
+
+    // Reset changes flags
     this.hasChanges = false;
-    this.hasManufacturingChanges = false; // Reset after save
+    this.hasManufacturingChanges = false;
+
+    // Hide loader after 3 seconds
+    setTimeout(() => {
+        this.loading = false; // Hide the loader
+    }, 3000);
 }
+
 
 
   // Method to update the state based on changes in part-info component

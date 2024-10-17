@@ -26,7 +26,7 @@
   
   input[type="text"] {
     padding: 0.5rem;
-    font-size: 0.65rem;
+    font-size: 0.60rem;
   }
   
   .form-actions {
@@ -41,19 +41,32 @@
 
   .form-control{
     height: 20px;
+    padding: 0%;
+    font-size: 10px;
   }
 
-  .radio-buttons {
-    display: flex;
-    align-items: center;
-  }
-  
-  .radio-buttons label {
-    margin-right: 15px; /* Space between labels */
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
+  select.form-control {
+    /* Keep default appearance */
+    appearance: auto; /* Use default dropdown appearance */
+}
+
+.radio-buttons {
+  display: flex;
+  align-items: center;
+  margin-top: 3px;
+}
+
+.radio-buttons label {
+  margin-right: 15px; /* Increased space between labels */
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.radio-buttons input[type="radio"] {
+  margin-right: 5px; /* Space between radio button and label */
+}
+
   
   /* styles.css or part-info.component.css */
 .snackbar-error {
@@ -65,5 +78,7 @@
   background-color: #2ecc71; /* Green color for success */
   color: #fff;
 }
+
+
 
   

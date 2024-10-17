@@ -30,7 +30,7 @@
     <!-- Form Content (Shown when the item is expanded) -->
     <div *ngIf="item.isExpanded" class="accordion-content">
       <!-- Load PartInfoComponent only if "Part Information" accordion is clicked -->
-      <app-part-info *ngIf="item.title === 'Part Information'" [selectedPart]="selectedPart" (changesMade)="onPartInfoChange($event)"></app-part-info>
+      <app-part-info *ngIf="item.title === 'Part Information'" [selectedPart]="selectedPart" [selectedProject]="selectedProject" [searchedProjectId]="searchedProjectId" (changesMade)="onPartInfoChange($event)"></app-part-info>
 
       <!-- Load ManufacturingInfoComponent only if "Manufacturing Information" accordion is clicked -->
       <app-manufacturing-info *ngIf="item.title === 'Manufacturing Information'" [selectedPart]="selectedPart" (Manu_changesMade)="onManufacturingChange($event)"></app-manufacturing-info>

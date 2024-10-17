@@ -52,7 +52,7 @@
           .subscribe({
             next: () => {
               this.snackBar.open('Manufacturing details updated successfully!', 'Close', {
-                duration: 3000, // Duration the snackbar is shown
+                duration: 5000, // Duration the snackbar is shown
                 verticalPosition: 'top', // Position it at the top
                 horizontalPosition: 'right', // Align to the right
                 panelClass: ['snackbar-success'] // Add custom class for styling if needed
@@ -64,7 +64,7 @@
             },
             error: (err) => {
               this.snackBar.open('Error updating manufacturing details.', 'Close', {
-                duration: 3000, // Duration the snackbar is shown
+                duration: 5000, // Duration the snackbar is shown
                 verticalPosition: 'top', // Position it at the top
                 horizontalPosition: 'right', // Align to the right
                 panelClass: ['snackbar-error'] // Add custom class for styling if needed
