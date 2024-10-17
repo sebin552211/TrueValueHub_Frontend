@@ -1,76 +1,107 @@
 .project-list-title {
     font-size: 24px;
     font-weight: bold;
-    color: #333; /* Adjust as needed */
+    color: #333;
     margin-bottom: 20px;
-}
-
-.tab-view {
-    border: 1px solid #e0e0e0; /* Tab view border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
-}
-
-.tab-view .p-tabview-nav {
-    background-color: #f9f9f9; /* Tab background color */
-    border-bottom: 1px solid #ccc; /* Bottom border */
-}
-
-.tab-view .p-tabview-nav .p-tabview-nav-link {
-    color: #007bff; /* Tab link color */
-    font-weight: bold; /* Bold tab text */
-    padding: 10px 15px; /* Padding for tabs */
-    transition: background-color 0.3s; /* Transition effect */
-}
-
-.tab-view .p-tabview-nav .p-tabview-nav-link:hover {
-    background-color: #e9ecef; /* Hover effect */
-}
-
-.tab-view .p-tabview-nav .p-tabview-nav-link.p-tabview-nav-active {
-    background-color: #fff; /* Active tab background */
-    border-bottom: 2px solid #007bff; /* Active tab underline */
-}
-
-.table-container {
-    padding: 15px; /* Container padding */
-}
-
-.p-datatable {
-    border: none; /* Remove default border */
-    border-radius: 8px; /* Rounded corners */
-}
-
-.p-datatable-header {
-    background-color: #f9f9f9; /* Header background */
-    border-bottom: 2px solid #007bff; /* Header bottom border */
-    font-weight: bold; /* Bold header text */
-}
-
-.p-datatable th {
-    color: #007bff; /* Header text color */
-    text-align: left; /* Align header text */
-    padding: 10px; /* Add padding */
-}
-
-.p-datatable td {
-    padding: 10px; /* Add padding */
-    border-bottom: 1px solid #e0e0e0; /* Row separator */
-}
-
-.edit-button {
-    background-color: white; /* White background */
-    border: none; /* Remove border */
-    color: blue; /* Change icon color to blue */
-    padding: 10px; /* Add padding for better appearance */
-    border-radius: 4px; /* Rounded corners */
-}
-
-.edit-button .pi {
-    color: blue; /* Set the icon color to blue */
-}
-
-.edit-button:hover {
-    background-color: #f0f0f0; /* Light gray background on hover */
-}
-
+  }
+  
+  .tab-view {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-container {
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-group label.required::after {
+    content: '*';
+    color: red;
+    margin-left: 5px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .form-group textarea {
+    resize: none;
+    height: 100px;
+  }
+  
+  .file-upload-container {
+    border: 2px dashed #007bff;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .file-upload-placeholder {
+    color: #007bff;
+    font-size: 16px;
+  }
+  
+  .file-upload-link {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .save-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .save-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .discard-link {
+    color: red;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .discard-link:hover {
+    color: darkred;
+  }
+  
+  .snackbar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 16px;
+    border-radius: 4px;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+  }
+  

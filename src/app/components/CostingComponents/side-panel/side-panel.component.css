@@ -171,3 +171,30 @@
   background-color: #dedede; /* Change background on hover */
 }
 
+.frame-item ul {
+  list-style-type: none; /* Remove default bullets */
+}
+
+.frame-item ul li {
+  margin-left: 20px; /* Indentation for child items */
+  position: relative;
+}
+
+.frame-item ul li:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10px;
+  border-left: 1px solid #000;
+  border-bottom: 1px solid #000;
+  height: 20px;
+  width: 10px;
+}
+
+.frame-item ul li:last-child:before {
+  border-left: 1px solid transparent; /* Remove vertical line for last child */
+}
+
+.frame-item ul li ul {
+  margin-left: 20px;
+}

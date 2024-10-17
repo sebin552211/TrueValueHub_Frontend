@@ -11,8 +11,8 @@ export class PartService {
   private apiUrl = 'https://localhost:7110/api/Part';
 
   constructor(private http: HttpClient) { }
-  getPartById(partId: string): Observable<Part> {
-    return this.http.get<Part>(`${this.apiUrl}/${partId}`);
+  getPartByInternalPartNumber(internalPartNumber: string): Observable<Part> {
+    return this.http.get<Part>(`${this.apiUrl}/${internalPartNumber}`);
   }
   updatePart(internalPartNumber: string, part: Part): Observable<any> {
     return this.http.put(`${this.apiUrl}/${internalPartNumber}`, part,{
