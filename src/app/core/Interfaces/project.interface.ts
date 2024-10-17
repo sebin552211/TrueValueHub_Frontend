@@ -5,5 +5,5 @@ export interface Project {
   projectName: string;
   projectDescription: string;
   createdDate: Date;
-  parts: Part[];  // Use Part interface for parts array
+  parts: any[];
 }

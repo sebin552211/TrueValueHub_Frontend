@@ -7,10 +7,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* flex-grow: 1;
-    overflow-y: auto; */
-    /* position:fixed;
-    margin-top: 62px; */
+    overflow: visible;
   }
   
   .project-info {
@@ -62,7 +59,7 @@
   }
   
   .scenario-btn {
-    background-color: #007bff;
+    background-color: #007bff;;
     color: white;
     padding: 5px 10px;
     border: none;
@@ -153,23 +150,37 @@
     margin-top: 10px;
 }
 
-.list-group {
-  /* margin-top: 35px; */
-  /* position: absolute; */
-  z-index: 1000;
+.dropdown-container {
+  position: relative; /* Ensure the dropdown is positioned relative to the input */
   width: 100%; /* Match the width of the input */
-  max-height: 100px; /* Set max height for dropdown */
-  overflow-y: auto; /* Enable scrolling */
-  background-color: #ccc;
+}
+
+.list-group {
+  display: block; /* Make sure the dropdown is displayed */
+  position: relative; /* Position the dropdown absolutely */
+  z-index: 10000; /* Keep it on top of other elements */
+  background-color: white; /* Ensure a visible background */
+  width: 100%; /* Match the width of the input */
+  max-height: 150px; /* Limit the height */
+  overflow-y: auto; /* Enable scrolling for long lists */
+  border: 1px solid #ccc; /* Add a visible border */
+  padding: 0; /* Remove extra padding */
+  margin: 0; /* Remove margin */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add shadow for better visibility */
 }
 
 .list-group-item {
-  cursor: pointer; /* Show pointer cursor on hover */
+  padding: 8px 12px; /* Spacing for list items */
+  border-bottom: 1px solid #ddd; /* Separator between items */
+  cursor: pointer; /* Change cursor on hover */
 }
 
 .list-group-item:hover {
-  background-color: #dedede; /* Change background on hover */
+  background-color: #f5f5f5; /* Light background on hover */
 }
+
+
+
 
 .frame-item ul {
   list-style-type: none; /* Remove default bullets */
@@ -197,4 +208,32 @@
 
 .frame-item ul li ul {
   margin-left: 20px;
+}
+
+/* Set background and text color for tree nodes */
+#projectTree .jstree-node {
+  background-color: #f8f9fa;
+  color: #343a40;
+}
+
+
+
+/* Change the hover effect for nodes */
+#projectTree .jstree-anchor:hover {
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+}
+
+/* Styling for selected node */
+#projectTree .jstree-clicked {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+/* Add spacing between tree nodes */
+#projectTree .jstree-children .jstree-node {
+  margin-bottom: 5px;
 }

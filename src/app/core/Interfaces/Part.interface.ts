@@ -21,4 +21,8 @@ export interface Part {
         $values: Manufacturing[]; 
     };
   }
-  
+  export interface ProjectResponse {
+    parts: {
+      $values: Part[];
+    };
+  }

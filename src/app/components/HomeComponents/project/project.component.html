@@ -2,8 +2,15 @@
 <div *ngIf="displaySnackbar" class="snackbar">{{ snackbarMessage }}</div>
 
 <p-tabView class="tab-view" [(activeIndex)]="activeTab">
-  <p-tabPanel header="Create">
-    <div class="form-container">
+  <p-tabPanel header="Create" [ngClass]="{ 'active': selectedTab === 'create' }" >
+    <ng-template pTemplate="header">
+      <span (click)="selectTab('create')">Create</span>
+    </ng-template>
+    <div class="form-container" (dragover)="onDragOver($event)" 
+    (dragleave)="onDragLeave($event)" 
+    (drop)="onDrop($event)">
+    <div class="file-upload-container" [class.dragging]="isDragging">
+      <div class="file-upload-placeholder">
       <form>
         <div class="form-group">
           <label for="projectName" class="required">Project Name/Number</label>
@@ -12,18 +19,25 @@
 
         <div class="form-group">
           <label for="description">Description</label>
-          <textarea id="description" placeholder="Description" [(ngModel)]="description" name="description"></textarea>
+          <input id="description" placeholder="Description" [(ngModel)]="projectDescription" name="description">
         </div>
 
         <div class="form-group">
           <label for="fileUpload" class="required">Attach files</label>
-          <div class="file-upload-container">
-            <div class="file-upload-placeholder">
-              <i class="pi pi-upload"></i> Drag & drop your File or Folder <span class="file-upload-link">Add File / Folder</span>
-            </div>
-            <input type="file" id="fileUpload" (change)="onFileSelected($event)" multiple>
+            <div class="fileupload">
+              <i class="pi pi-upload"></i> 
+              Drag & drop your File or Folder 
+              <span class="file-upload-link" (click)="triggerFileInput()">Add File / Folder</span>
+
+            <input type="file" id="fileUpload" (change)="onFileSelected($event)" multiple style="display: none;">
+          </div>
+
+          <!-- Display the selected file name -->
+          <div *ngIf="selectedFileName" class="file-name">
+            Selected file: {{ selectedFileName }}
           </div>
         </div>
+        
 
         <div class="form-actions">
           <button type="button" class="btn save-button" (click)="saveToDraft()">Save to Draft</button>
@@ -31,9 +45,14 @@
         </div>
       </form>
     </div>
+    </div>
+    </div>
   </p-tabPanel>
 
-  <p-tabPanel header="Draft">
+  <p-tabPanel header="Draft" [ngClass]="{ 'active': selectedTab === 'draft' }" >
+    <ng-template pTemplate="header">
+      <span (click)="selectTab('draft')">Draft</span>
+    </ng-template>
     <app-draft-tab></app-draft-tab> <!-- Load DraftTabComponent here -->
   </p-tabPanel>
 </p-tabView>

@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltip } from '@angular/material/tooltip';
 import { ErrorTooltipComponent } from '../../../../ui/error-tooltip/error-tooltip.component';
+import { Project } from '../../../../core/Interfaces/project.interface';
+import { ProjectService } from '../../../../core/Services/project.service';
 
 @Component({
   selector: 'app-part-info',
@@ -16,6 +18,8 @@ import { ErrorTooltipComponent } from '../../../../ui/error-tooltip/error-toolti
 })
 export class PartInfoComponent implements OnInit {
   @Input() selectedPart: Part | null = null; // Accept Part or null
+  @Input() selectedProject: any | null = null;
+  @Input() searchedProjectId: any | null = null;
   partForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private partService: PartService, private snackBar: MatSnackBar) {}
@@ -27,11 +31,38 @@ export class PartInfoComponent implements OnInit {
   onFieldChange() {
     this.isChanged = true;
     this.changesMade.emit(this.isChanged);
+    this.recalculateFields();
+  }
+
+  recalculateFields(): void {
+    const annualVolume = this.partForm.get('annualVolume')?.value;
+    const lotSize = this.partForm.get('lotSize')?.value;
+    const productLifeRemaining = this.partForm.get('productLifeRemaining')?.value;
+  
+    if (annualVolume !== null) {
+      // Calculate lotSize if it's not set
+      if (lotSize !== null) {
+        const calculatedLotSize = (annualVolume / 12).toFixed(4);
+      this.partForm.patchValue({ lotSize: parseFloat(calculatedLotSize) });
+      }
+  
+      // Calculate productLifeRemaining if it's not set
+      if (productLifeRemaining !== null) {
+        const calculatedProductLifeRemaining = ((annualVolume * (this.partForm.get('lotSize')?.value || 0)) / 3600).toFixed(4);
+      this.partForm.patchValue({ productLifeRemaining: parseFloat(calculatedProductLifeRemaining) });
+      }
+  
+      // Calculate lifeTimeQuantityRemaining based on annualVolume and productLifeRemaining
+      const calculatedLifeTimeQuantityRemaining = (annualVolume + (this.partForm.get('productLifeRemaining')?.value || 0)).toFixed(4);
+    this.partForm.patchValue({ lifeTimeQuantityRemaining: parseFloat(calculatedLifeTimeQuantityRemaining) });
+    }
   }
 
   ngOnInit(): void {
     this.initializeForm();
-    console.log(this.selectedPart,"hi")
+    if(this.selectedPart){
+      this.populateForm(this.selectedPart);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -41,6 +72,7 @@ export class PartInfoComponent implements OnInit {
         console.log(this.selectedPart);
       }
     }
+    console.log(this.selectedProject)
   }
 
   initializeForm(): void {
@@ -105,9 +137,15 @@ export class PartInfoComponent implements OnInit {
   
     // If the form is valid, proceed with the update
     this.partForm.get('internalPartNumber')?.enable(); // Enable the control to include it in raw values
-    const updatedPart: Part = this.partForm.getRawValue(); // Get form values including disabled fields
+    const updatedPart: any = this.partForm.getRawValue(); // Get form values including disabled fields
     const internalPartNumber = updatedPart.internalPartNumber;
+    if (this.selectedProject && this.selectedProject.projectId != null) {
+      updatedPart.projectId = this.selectedProject.projectId;
+  } else {
+      updatedPart.projectId = this.searchedProjectId;
+  }
   
+
     console.log('Updated Part:', updatedPart); // Log the updated part details
   
     this.partService.updatePart(internalPartNumber, updatedPart).subscribe({
@@ -116,7 +154,7 @@ export class PartInfoComponent implements OnInit {
   
         // Show a success snackbar message
         this.snackBar.open('Updated Successfully', 'Close', {
-          duration: 3000, // Duration the snackbar is shown
+          duration: 5000, // Duration the snackbar is shown
           verticalPosition: 'top', // Position it at the top
           horizontalPosition: 'right', // Align to the right
           panelClass: ['snackbar-success'] // Add custom class for styling
