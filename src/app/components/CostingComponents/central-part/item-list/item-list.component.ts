@@ -48,7 +48,7 @@ export class ItemListComponent {
   @ViewChild(ManufacturingInfoComponent) manufacturinginfoComponent!:ManufacturingInfoComponent;
 
   ngOnChanges(): void {
-    console.log(this.selectedPart, "hello");
+    console.log(this.selectedPart);
     console.log(this.selectedProject)
     console.log(this.searchedProjectId);
     

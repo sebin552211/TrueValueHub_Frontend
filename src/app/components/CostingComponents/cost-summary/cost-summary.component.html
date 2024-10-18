@@ -49,8 +49,9 @@
                         <div class="col-md-4" style="margin-left: -5px;">
                             <div class="input-group">
                                 <span class="input-group-text">$</span>
-                                <input type="text" id="manufacturingCost" class="form-control" value="31.104" readonly>
-                            </div>
+                                <input type="text" id="manufacturingCost" class="form-control" 
+                                       [value]="(manufacturingCost$ | async) || 0" readonly>
+                              </div>
                         </div>
                         <div class="col-md-4" style="margin-left: 5px;">
                             <input type="text" class="form-control" value="41.73 %" readonly>
