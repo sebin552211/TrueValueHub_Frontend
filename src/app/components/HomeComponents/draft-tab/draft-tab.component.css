@@ -2,13 +2,15 @@
     padding: 20px;
   }
 
-  .table-container th{
+  .main-table th {
     background-color: rgb(236, 246, 253);
     border: 1px solid black; /* Border for table headers */
-  }
+    text-align: center;
+}
 
-  .table-container td {
-    border: 1px solid rgb(177, 177, 177);; /* Border for table cells */
+.main-table td {
+    border: 1px solid rgb(177, 177, 177); /* Border for table cells */
+    text-align: center;
 }
   
   .edit-button {
@@ -32,18 +34,18 @@
     background-color: #e6e6e6; /* White for odd rows */
   }
 
-  .partsTable {
-    padding-left: 10%;
+  .expanded-table {
     width: 100%; /* Ensures full width */
     border-collapse: collapse; /* Ensures borders do not double */
+    margin: 0 auto; /* Center alignment */
 }
 
-.partsTable th, .partsTable td {
-
+.expanded-table th, .expanded-table td {
     padding: 8px; /* Padding for cells */
+    text-align: center; /* Center align content */
 }
 
-.partsTable th {
+.expanded-table th {
     background-color: #f2f2f2; /* Background for header cells */
     font-weight: bold;
 }

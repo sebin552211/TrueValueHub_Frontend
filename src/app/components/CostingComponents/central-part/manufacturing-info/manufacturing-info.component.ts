@@ -9,6 +9,8 @@ import { Part } from '../../../../core/Interfaces/Part.interface'; // Adjust the
 import { PartService } from '../../../../core/Services/part.service';
 import { ManufacturingUpdateformComponent } from "../manufacturing-updateform/manufacturing-updateform.component";
 import { MatTooltip } from '@angular/material/tooltip';
+import { Store } from '@ngrx/store';
+import { updateManufacturingCosts } from '../../../../store/actions/manufacturing-cost.actions';
 
 @Component({
   selector: 'app-manufacturing-info',
@@ -26,17 +28,26 @@ export class ManufacturingInfoComponent implements OnChanges {
 
   @Output() Manu_changesMade = new EventEmitter<boolean>();
 
-  onManufacturingFieldChange(changed: boolean) {
-    this.Manu_changesMade.emit(changed);
-  }
-
   // Constructor for service and dialogs
   constructor(
     private partService: PartService,
     private manufacturingService: ManufacturingService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private store: Store
   ) {}
+
+  onManufacturingFieldChange(changed: boolean) {
+    this.Manu_changesMade.emit(changed);
+    if (changed) {
+      this.calculateTotalCost();
+    }
+  }
+
+  calculateTotalCost() {
+    const totalCost = this.manufacturings.reduce((acc, manufacturing) => acc + manufacturing.cost, 0);
+    this.store.dispatch(updateManufacturingCosts({ totalCost }));
+  }
 
 onPartSelected(part: Part) {
   this.selectedPart = part; // Set the selected part when a user selects a part
@@ -195,6 +206,7 @@ ngOnInit() {
     );
     if (index !== -1) {
       this.manufacturings[index] = { ...updatedManufacturing }; // Update the table data immediately
+      this.calculateTotalCost();
     }
   }
   

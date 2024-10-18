@@ -1,6 +1,7 @@
 <div class="table-container">
   <p-table 
     [value]="projects" 
+    class="main-table"
     [paginator]="true" 
     [rows]="10" 
     [sortMode]="'single'" 
@@ -55,7 +56,7 @@
       <tr>
         <td colspan="4" >
           <div>
-            <p-table [value]="project.parts" dataKey="partId">
+            <p-table class="expanded-table" [value]="project.parts" dataKey="partId">
               <ng-template pTemplate="header">
                 <tr>
                   <th>Part ID</th>

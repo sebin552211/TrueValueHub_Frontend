@@ -153,7 +153,7 @@ export class PartInfoComponent implements OnInit {
         console.log('Update successful:', response);
   
         // Show a success snackbar message
-        this.snackBar.open('Updated Successfully', 'Close', {
+        this.snackBar.open('Part details updated successfully!', 'Close', {
           duration: 5000, // Duration the snackbar is shown
           verticalPosition: 'top', // Position it at the top
           horizontalPosition: 'right', // Align to the right
